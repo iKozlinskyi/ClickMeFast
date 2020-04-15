@@ -4,7 +4,7 @@
 </div>
 
 <div *ngIf="currentState === states.PLAYING">
-  <p>Timer: {{ timerValue }}</p>
+  <p>Time remaining: {{ timerValue }}</p>
   <p>Clicks: {{ clicks }}</p>
   <button (click)="handleClick()">Click Me!</button>
 </div>
@@ -12,4 +12,5 @@
 <div *ngIf="currentState === states.FINISHED">
   <p>Time is Up!</p>
   <p>You clicked {{ clicks }} times</p>
+  <button (click)="startGame()">Play again</button>
 </div>
