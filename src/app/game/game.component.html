@@ -1,0 +1,15 @@
+<div *ngIf="currentState === states.BEFORE_GAME">
+  <p>Click Start, and then click fast as hell!</p>
+  <button (click)="startGame()">Start</button>
+</div>
+
+<div *ngIf="currentState === states.PLAYING">
+  <p>Timer: {{ timerValue }}</p>
+  <p>Clicks: {{ clicks }}</p>
+  <button (click)="handleClick()">Click Me!</button>
+</div>
+
+<div *ngIf="currentState === states.FINISHED">
+  <p>Time is Up!</p>
+  <p>You clicked {{ clicks }} times</p>
+</div>
