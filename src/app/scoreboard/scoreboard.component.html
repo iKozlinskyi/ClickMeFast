@@ -1,0 +1,17 @@
+<div>
+  <h3>Scoreboard</h3>
+  <table>
+    <thead>
+    <tr>
+      <td>username</td>
+      <td>score</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let record of scoreData">
+      <td>{{ record.username }}</td>
+      <td>{{ record.score }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
