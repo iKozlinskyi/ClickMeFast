@@ -16,7 +16,9 @@ export class ScoreService {
 
   private scoreDataChanged$ = new BehaviorSubject<Score[]>(this.scoreData);
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService) {
+    this.restoreScores();
+  }
 
   getScores$(): Observable<Score[]> {
     return this.scoreDataChanged$.asObservable();
@@ -27,6 +29,7 @@ export class ScoreService {
 
     this.scoreData = this.getDataWithNewScoreInserted(newScore);
     this.scoreDataChanged$.next([...this.scoreData]);
+    this.persistScores();
   }
 
   private createScoreRecord(score: number): Score {
@@ -52,5 +55,21 @@ export class ScoreService {
     }
 
     return modifiedScoreData;
+  }
+
+  // These methods should better be moved to its own service, but for now I`ll leave it like this
+  private persistScores(): void {
+    localStorage.setItem('scoreData', JSON.stringify(this.scoreData));
+    this.scoreDataChanged$.next([...this.scoreData]);
+  }
+
+  private restoreScores(): void {
+    const scoreObjects: Score[] = JSON.parse(localStorage.getItem('scoreData') || '[]');
+    if (scoreObjects.length > 0) {
+      this.scoreData = scoreObjects.map(({username, score, timestamp}) => {
+        return new Score(username, score, timestamp);
+      });
+      this.scoreDataChanged$.next([...this.scoreData]);
+    }
   }
 }
