@@ -1,4 +1,4 @@
-<h3 *ngIf="currentUser">Logged in as {{ currentUser.username }}</h3>
+<h3 *ngIf="currentUser">Welcome, {{ currentUser.username }}</h3>
 
 <div *ngIf="currentState === states.BEFORE_GAME">
   <p>Click Start, and then click fast as hell!</p>
@@ -15,4 +15,6 @@
   <p>Time is Up!</p>
   <p>You clicked {{ clicks }} times</p>
   <button (click)="startGame()">Play again</button>
+  <br/>
+  <a routerLink="/scoreboard">Go to scoreboard</a>
 </div>

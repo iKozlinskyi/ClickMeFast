@@ -2,8 +2,8 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {GameState} from '../shared/game-state.enum';
 import {TimerService} from './timer.service';
 import {Subscription} from 'rxjs';
-import {User} from '../shared/user.model';
-import {AuthService} from '../shared/auth.service';
+import {User} from '../auth/user.model';
+import {AuthService} from '../auth/auth.service';
 import {ScoreService} from '../shared/score.service';
 
 @Component({
@@ -55,7 +55,9 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.timerSubscription.unsubscribe();
+    if (this.timerSubscription) {
+      this.timerSubscription.unsubscribe();
+    }
     this.userSubscription.unsubscribe();
   }
 }

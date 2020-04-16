@@ -2,6 +2,6 @@
 <p>Hi, and welcome to this insanely complicated game</p>
 <form action="" #f="ngForm" (ngSubmit)="onSubmit(f)">
   <label for="username"></label>
-  <input type="text" id="username" name="username" ngModel>
-  <button >Submit</button>
+  <input type="text" id="username" name="username" ngModel required>
+  <button [disabled]="!f.valid">Submit</button>
 </form>
