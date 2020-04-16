@@ -1,3 +1,5 @@
+<h3 *ngIf="currentUser">Logged in as {{ currentUser.username }}</h3>
+
 <div *ngIf="currentState === states.BEFORE_GAME">
   <p>Click Start, and then click fast as hell!</p>
   <button (click)="startGame()">Start</button>

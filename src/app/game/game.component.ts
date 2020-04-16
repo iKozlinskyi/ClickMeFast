@@ -2,6 +2,8 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {GameState} from '../shared/game-state.enum';
 import {TimerService} from './timer.service';
 import {Subscription} from 'rxjs';
+import {User} from '../shared/user.model';
+import {AuthService} from '../shared/auth.service';
 
 @Component({
   selector: 'app-game',
@@ -15,8 +17,12 @@ export class GameComponent implements OnInit, OnDestroy {
   timerValue: number;
   gameDuration = 3;
   timerSubscription: Subscription;
+  currentUser: User;
+  userSubscription: Subscription;
 
-  constructor(private timerService: TimerService) { }
+  constructor(private timerService: TimerService, private authService: AuthService) {
+    this.userSubscription = authService.getCurrentUser().subscribe(user => this.currentUser = user);
+  }
 
   ngOnInit(): void {
   }
@@ -39,5 +45,6 @@ export class GameComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.timerSubscription.unsubscribe();
+    this.userSubscription.unsubscribe();
   }
 }

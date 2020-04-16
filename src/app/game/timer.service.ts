@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {interval} from 'rxjs';
+import {interval, Observable} from 'rxjs';
 import {map, startWith, take} from 'rxjs/operators';
 
 @Injectable({
@@ -11,7 +11,7 @@ export class TimerService {
 
   constructor() { }
 
-  startTimer(duration: number) {
+  startTimer(duration: number): Observable<number> {
     return this.timer$.pipe(
       startWith(-1),
       take(duration + 1),
