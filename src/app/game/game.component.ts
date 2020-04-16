@@ -4,6 +4,7 @@ import {TimerService} from './timer.service';
 import {Subscription} from 'rxjs';
 import {User} from '../shared/user.model';
 import {AuthService} from '../shared/auth.service';
+import {ScoreService} from '../shared/score.service';
 
 @Component({
   selector: 'app-game',
@@ -20,11 +21,16 @@ export class GameComponent implements OnInit, OnDestroy {
   currentUser: User;
   userSubscription: Subscription;
 
-  constructor(private timerService: TimerService, private authService: AuthService) {
-    this.userSubscription = authService.getCurrentUser().subscribe(user => this.currentUser = user);
-  }
+  constructor(
+    private timerService: TimerService,
+    private authService: AuthService,
+    private scoreService: ScoreService
+  ) { }
 
   ngOnInit(): void {
+    this.userSubscription = this.authService
+      .currentUserStream$()
+      .subscribe(user => this.currentUser = user);
   }
 
   handleClick() {
@@ -40,7 +46,12 @@ export class GameComponent implements OnInit, OnDestroy {
         this.timerValue = val;
       },
         null,
-        () => this.currentState = this.states.FINISHED);
+        this.completeGame.bind(this));
+  }
+
+  completeGame() {
+    this.currentState = this.states.FINISHED;
+    this.scoreService.addScore(this.clicks);
   }
 
   ngOnDestroy(): void {

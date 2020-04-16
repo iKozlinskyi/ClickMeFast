@@ -5,12 +5,14 @@
     <tr>
       <td>username</td>
       <td>score</td>
+      <td>date</td>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let record of scoreData">
       <td>{{ record.username }}</td>
       <td>{{ record.score }}</td>
+      <td>{{ record.timestamp | date:'medium' }}</td>
     </tr>
     </tbody>
   </table>

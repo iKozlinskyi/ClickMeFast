@@ -15,8 +15,12 @@ export class AuthService {
     this.currentUser.next(user);
   }
 
-  getCurrentUser(): Observable<User> {
+  currentUserStream$(): Observable<User> {
     return this.currentUser.asObservable();
+  }
+
+  getCurrentUser(): User {
+    return this.currentUser.getValue();
   }
 
   login(username: string): void {

@@ -1,21 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Score} from '../shared/score.model';
+import {ScoreService} from '../shared/score.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-scoreboard',
   templateUrl: './scoreboard.component.html',
   styleUrls: ['./scoreboard.component.scss']
 })
-export class ScoreboardComponent implements OnInit {
+export class ScoreboardComponent implements OnInit, OnDestroy {
 
-  scoreData = [
-    {username: 'Potato', score: 20},
-    {username: 'Banana', score: 8},
-    {username: 'Cabbage', score: 15},
-  ];
+  scoreData: Score[];
+  scoreSubscr: Subscription;
 
-  constructor() { }
+  constructor(private scoreService: ScoreService) { }
 
   ngOnInit(): void {
+    this.scoreSubscr = this.scoreService.getScores$().subscribe(
+      scoreData => this.scoreData = scoreData
+    );
   }
+
+  ngOnDestroy(): void {
+    this.scoreSubscr.unsubscribe();
+  }
+
+
 
 }
