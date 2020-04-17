@@ -1,0 +1,11 @@
+<nav class="navbar navbar-expand navbar-light bg-light">
+  <a class="navbar-brand" routerLink="/">ClickMeFast</a>
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" [class.disabled]="!currentUser" routerLink="/game" routerLinkActive="active">Game</a>
+      <a class="nav-item nav-link" routerLink="/scoreboard" routerLinkActive="active">Scoreboard</a>
+    </div>
+  <div class="ml-auto navbar-nav " *ngIf="!!currentUser">
+    <a class="nav-item nav-link Navbar__link" (click)="handleLogout()">Log Out</a>
+    <div class="nav-item nav-link">Logged in as {{ currentUser.username }}</div>
+  </div>
+</nav>
