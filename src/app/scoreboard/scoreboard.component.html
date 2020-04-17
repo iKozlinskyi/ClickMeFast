@@ -1,15 +1,17 @@
-<div>
-  <h3>Scoreboard</h3>
-  <table>
-    <thead>
+<div class="Scoreboard">
+  <h2 class="display-3 text-center my-3">Scoreboard</h2>
+  <table class="table table-hover">
+    <thead class="thead">
     <tr>
-      <td>username</td>
-      <td>score</td>
-      <td>date</td>
+      <th>Place</th>
+      <th>Username</th>
+      <th>Score</th>
+      <th>Date</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let record of scoreData">
+    <tr *ngFor="let record of scoreData; let i = index">
+      <td>{{ i + 1 }}</td>
       <td>{{ record.username }}</td>
       <td>{{ record.score }}</td>
       <td>{{ record.timestamp | date:'medium' }}</td>
