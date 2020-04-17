@@ -17,6 +17,9 @@ export class LandingComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     const {username} = form.value;
+    if (!username) {
+      return;
+    }
     this.authService.login(username);
     this.router.navigate(['game']);
   }
