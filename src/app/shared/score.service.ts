@@ -8,11 +8,7 @@ import {AuthService} from '../auth/auth.service';
 })
 export class ScoreService {
 
-  private scoreData: Score[] = [
-    new Score('Potato', 15, new Date()),
-    new Score('Cabbage', 10, new Date()),
-    new Score('Banana', 8, new Date()),
-  ];
+  private scoreData: Score[] = [];
 
   private scoreDataChanged$ = new BehaviorSubject<Score[]>(this.scoreData);
 
@@ -24,12 +20,23 @@ export class ScoreService {
     return this.scoreDataChanged$.asObservable();
   }
 
-  addScore(score: number): void {
+  /**
+   * Represents a book.
+   * @param score - Score reached
+   * @return scorePosition -  position of this score value in scoreboard
+   */
+  addScore(score: number): number {
     const newScore = this.createScoreRecord(score);
 
     this.scoreData = this.getDataWithNewScoreInserted(newScore);
     this.scoreDataChanged$.next([...this.scoreData]);
     this.persistScores();
+
+    return this.getScorePosition(newScore);
+  }
+
+  private getScorePosition(scoreRecord: Score) {
+    return this.scoreData.findIndex(({timestamp}) => timestamp === scoreRecord.timestamp);
   }
 
   private createScoreRecord(score: number): Score {
@@ -37,7 +44,7 @@ export class ScoreService {
     return new Score(username, score, new Date());
   }
 
-  private getDataWithNewScoreInserted(newScore): Score[] {
+  private getDataWithNewScoreInserted(newScore: Score): Score[] {
     let isPushed = false;
 
     const modifiedScoreData = this.scoreData.reduce((accum: Score[], scoreRecord) => {

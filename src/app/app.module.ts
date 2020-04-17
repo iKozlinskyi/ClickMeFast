@@ -7,13 +7,15 @@ import { GameComponent } from './game/game.component';
 import { LandingComponent } from './landing/landing.component';
 import {FormsModule} from '@angular/forms';
 import { ScoreboardComponent } from './scoreboard/scoreboard.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GameComponent,
     LandingComponent,
-    ScoreboardComponent
+    ScoreboardComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

@@ -20,6 +20,7 @@ export class GameComponent implements OnInit, OnDestroy {
   timerSubscription: Subscription;
   currentUser: User;
   userSubscription: Subscription;
+  scorePosition: number;
 
   constructor(
     private timerService: TimerService,
@@ -51,7 +52,7 @@ export class GameComponent implements OnInit, OnDestroy {
 
   completeGame() {
     this.currentState = this.states.FINISHED;
-    this.scoreService.addScore(this.clicks);
+    this.scorePosition = this.scoreService.addScore(this.clicks) + 1;
   }
 
   ngOnDestroy(): void {
