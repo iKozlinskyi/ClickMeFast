@@ -1,24 +1,24 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-6 offset-md-3">
-      <h1>ClickMeFast</h1>
-      <p>Hi, and welcome to this insanely complicated game</p>
-
-      <form #f="ngForm" (ngSubmit)="onSubmit(f)">
-        <label for="username">Your username</label>
-        <div class="input-group">
-          <input
-            class="form-control"
-            type="text"
-            id="username"
-            name="username"
-            ngModel
-            required
-            placeholder="Player1"
-          >
-          <button class="btn btn-primary" [disabled]="!f.valid && f.touched">Submit</button>
-        </div>
-      </form>
+<div class="Landing row justify-content-center align-items-center">
+  <div>
+    <div class="text-center">
+      <h1 class="display-2">ClickMeFast</h1>
+      <h4 class="lead">Hi, and welcome to this insanely complicated game!</h4>
     </div>
+
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="mt-5">
+      <label for="username">Your username</label>
+      <div class="input-group">
+        <input
+          class="form-control"
+          type="text"
+          id="username"
+          name="username"
+          ngModel
+          required
+          placeholder="Player1"
+        >
+        <button class="btn btn-primary" [disabled]="!f.valid && f.touched">Submit</button>
+      </div>
+    </form>
   </div>
 </div>

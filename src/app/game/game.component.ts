@@ -13,10 +13,10 @@ import {ScoreService} from '../shared/score.service';
 })
 export class GameComponent implements OnInit, OnDestroy {
   states = GameState;
-  currentState: GameState = this.states.BEFORE_GAME;
+  currentState: GameState = this.states.INITIAL;
   clicks = 0;
   timerValue: number;
-  gameDuration = 3;
+  gameDuration = 10;
   timerSubscription: Subscription;
   currentUser: User;
   userSubscription: Subscription;
@@ -59,5 +59,10 @@ export class GameComponent implements OnInit, OnDestroy {
       this.timerSubscription.unsubscribe();
     }
     this.userSubscription.unsubscribe();
+  }
+
+  setInitialGameState() {
+    this.currentState = this.states.INITIAL;
+    this.clicks = 0;
   }
 }
