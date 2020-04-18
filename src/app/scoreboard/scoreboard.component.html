@@ -17,6 +17,12 @@
       <td>{{ record.timestamp | date:'medium' }}</td>
     </tr>
     </tbody>
-  </table>dawd
-  <button class="btn btn-warning mt-2" (click)="handleClearData()">Clear scoreboard</button>
+  </table>
+  <button class="btn btn-warning mt-2" (click)="showModal($event)">Clear scoreboard</button>
+  <app-modal
+    [isShown]="isModalShown"
+    (submitModal)="submitModal()"
+    (closeModal)="closeModal()"
+    [modalText]="modalText"
+  ></app-modal>
 </div>
