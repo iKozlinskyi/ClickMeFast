@@ -35,6 +35,12 @@ export class ScoreService {
     return this.getScorePosition(newScore);
   }
 
+  clearData(): void {
+    this.scoreData = [];
+    this.scoreDataChanged$.next([...this.scoreData]);
+    this.persistScores();
+  }
+
   private getScorePosition(scoreRecord: Score) {
     return this.scoreData.findIndex(({timestamp}) => timestamp === scoreRecord.timestamp);
   }

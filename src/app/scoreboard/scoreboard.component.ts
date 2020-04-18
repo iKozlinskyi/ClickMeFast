@@ -25,6 +25,8 @@ export class ScoreboardComponent implements OnInit, OnDestroy {
     this.scoreSubscr.unsubscribe();
   }
 
-
+  handleClearData() {
+    this.scoreService.clearData();
+  }
 
 }

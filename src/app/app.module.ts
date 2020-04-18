@@ -8,6 +8,8 @@ import { LandingComponent } from './landing/landing.component';
 import {FormsModule} from '@angular/forms';
 import { ScoreboardComponent } from './scoreboard/scoreboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ModalComponent } from './shared/modal/modal.component';
+import { ClickOutsideDirective } from './shared/click-outside.directive';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { NavbarComponent } from './navbar/navbar.component';
     GameComponent,
     LandingComponent,
     ScoreboardComponent,
-    NavbarComponent
+    NavbarComponent,
+    ModalComponent,
+    ClickOutsideDirective
   ],
   imports: [
     BrowserModule,
