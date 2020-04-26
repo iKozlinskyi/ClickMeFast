@@ -16,10 +16,10 @@ export class GameComponent implements OnInit, OnDestroy {
   currentState: GameState = this.states.INITIAL;
   clicks = 0;
   timerValue: number;
-  gameDuration = 10;
-  timerSubscription: Subscription;
+  private gameDuration = 10;
+  private timerSubscription: Subscription;
   currentUser: User;
-  userSubscription: Subscription;
+  private userSubscription: Subscription;
   scorePosition: number;
 
   constructor(
@@ -34,11 +34,11 @@ export class GameComponent implements OnInit, OnDestroy {
       .subscribe(user => this.currentUser = user);
   }
 
-  handleClick() {
+  public handleClick(): void {
     this.clicks++;
   }
 
-  startGame() {
+  public startGame(): void {
     this.clicks = 0;
     this.timerSubscription = this.timerService
       .startTimer(this.gameDuration)
@@ -50,7 +50,7 @@ export class GameComponent implements OnInit, OnDestroy {
         this.completeGame.bind(this));
   }
 
-  completeGame() {
+  public completeGame(): void {
     this.currentState = this.states.FINISHED;
     this.scorePosition = this.scoreService.addScore(this.clicks) + 1;
   }
@@ -62,7 +62,7 @@ export class GameComponent implements OnInit, OnDestroy {
     this.userSubscription.unsubscribe();
   }
 
-  setInitialGameState() {
+  public setInitialGameState() {
     this.currentState = this.states.INITIAL;
     this.clicks = 0;
   }

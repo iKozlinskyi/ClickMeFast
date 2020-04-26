@@ -12,7 +12,7 @@ import {ModalText} from '../shared/modal/modal.component';
 export class ScoreboardComponent implements OnInit, OnDestroy {
 
   scoreData: Score[];
-  scoreSubscr: Subscription;
+  private scoreSubscr: Subscription;
   isModalShown = false;
   modalText: ModalText = {
     title: 'Deleting scoreboard',

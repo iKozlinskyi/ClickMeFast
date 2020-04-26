@@ -10,6 +10,7 @@ import { ScoreboardComponent } from './scoreboard/scoreboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ModalComponent } from './shared/modal/modal.component';
 import { ClickOutsideDirective } from './shared/click-outside.directive';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ClickOutsideDirective } from './shared/click-outside.directive';
     ScoreboardComponent,
     NavbarComponent,
     ModalComponent,
-    ClickOutsideDirective
+    ClickOutsideDirective,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

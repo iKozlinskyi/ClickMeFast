@@ -11,7 +11,7 @@ import {Subscription} from 'rxjs';
 export class NavbarComponent implements OnInit, OnDestroy {
 
   currentUser: User = null;
-  userSubscr: Subscription;
+  private userSubscr: Subscription;
 
   constructor(private authService: AuthService) { }
 
@@ -25,7 +25,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.userSubscr.unsubscribe();
   }
 
-  handleLogout() {
+  public handleLogout() {
     this.authService.logout();
   }
 }

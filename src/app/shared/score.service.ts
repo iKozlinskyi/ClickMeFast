@@ -21,11 +21,11 @@ export class ScoreService {
   }
 
   /**
-   * Represents a book.
+   * Adds score to scoreboard
    * @param score - Score reached
    * @return scorePosition -  position of this score value in scoreboard
    */
-  addScore(score: number): number {
+  public addScore(score: number): number {
     const newScore = this.createScoreRecord(score);
 
     this.scoreData = this.getDataWithNewScoreInserted(newScore);
@@ -35,7 +35,7 @@ export class ScoreService {
     return this.getScorePosition(newScore);
   }
 
-  clearData(): void {
+  public clearData(): void {
     this.scoreData = [];
     this.scoreDataChanged$.next([...this.scoreData]);
     this.persistScores();

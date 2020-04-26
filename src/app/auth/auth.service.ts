@@ -12,24 +12,24 @@ export class AuthService {
 
   constructor(private router: Router) { }
 
-  setCurrentUser(user: User): void {
+  public setCurrentUser(user: User): void {
     this.currentUser$.next(user);
   }
 
-  currentUserStream$(): Observable<User> {
+  public currentUserStream$(): Observable<User> {
     return this.currentUser$.asObservable();
   }
 
-  getCurrentUser(): User {
+  public getCurrentUser(): User {
     return this.currentUser$.getValue();
   }
 
-  login(username: string): void {
+  public login(username: string): void {
     const loggedUser = new User(username);
     this.setCurrentUser(loggedUser);
   }
 
-  logout() {
+  public logout(): void {
     this.currentUser$.next(null);
     this.router.navigate(['/']);
   }

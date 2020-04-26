@@ -31,11 +31,11 @@ export class ModalComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  handleSubmit() {
+  public handleSubmit() {
     this.submitModal.emit();
   }
 
-  handleClose() {
+  public handleClose() {
     this.closeModal.emit();
   }
 }

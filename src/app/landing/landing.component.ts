@@ -15,7 +15,7 @@ export class LandingComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(form: NgForm) {
+  public onSubmit(form: NgForm): void {
     const {username} = form.value;
     if (!username) {
       return;
